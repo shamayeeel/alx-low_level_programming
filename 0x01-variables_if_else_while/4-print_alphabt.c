@@ -1,6 +1,6 @@
-*
+/*
  * File: 4-print_alphabt.c
- * Auth:Shamayel
+ * Auth: Shamayel
  */
 
 #include <stdio.h>
@@ -24,3 +24,4 @@ int main(void)
 
 	return (0);
 }
+
