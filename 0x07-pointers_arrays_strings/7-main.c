@@ -21,4 +21,3 @@ int main(void)
     print_chessboard(board);
     return (0);
 }
-
