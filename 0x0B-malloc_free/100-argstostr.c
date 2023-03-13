@@ -2,43 +2,48 @@
 #include <stdlib.h>
 
 /**
- * argstostr - concatenates all the arguments of your program
- * @ac: number of arguments
- * @av: pointer to array of arguments
+ * argstostr - concatenates all the arguments of your program.
+ * @ac: arguments count
+ * @av: arguments vector
  *
- * Return: pointer to concatenated string
+ * Return: a pointer to a new string, or NULL if it fails
  */
 char *argstostr(int ac, char **av)
 {
-    int i, j, len = 0, pos = 0;
-    char *str;
+	char *str, *s;
+	int i, j, k, len = 0;
 
-    if (ac == 0 || av == NULL)
-        return (NULL);
+	if (ac == 0 || av == NULL)
+		return (NULL);
 
-    for (i = 0; i < ac; i++)
-    {
-        for (j = 0; av[i][j]; j++)
-            len++;
-        len++;
-    }
+	for (i = 0; i < ac; i++)
+	{
+		s = av[i];
+		j = 0;
 
-    str = malloc(sizeof(char) * (len + 1));
-    if (str == NULL)
-        return (NULL);
+		while (s[j++])
+			len++;
+		len++;
+	}
 
-    for (i = 0; i < ac; i++)
-    {
-        for (j = 0; av[i][j]; j++)
-        {
-            str[pos] = av[i][j];
-            pos++;
-        }
-        str[pos] = '\n';
-        pos++;
-    }
-    str[pos] = '\0';
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		return (NULL);
 
-    return (str);
+	for (i = 0, j = 0; i < ac && j < len; i++)
+	{
+		s = av[i];
+		k = 0;
+
+		while (s[k])
+		{
+			str[j] = s[k];
+			k++;
+			j++;
+		}
+		str[j++] = '\n';
+	}
+	str[j] = '\0';
+
+	return (str);
 }
-
